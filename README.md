@@ -1,5 +1,4 @@
 ---
-permalink: /index.html
 markdown_extensions:
   - markdown_fenced_code_tabs
 ---
