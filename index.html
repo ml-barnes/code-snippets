@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./style.css">
   <script src="./script.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </head>
 <body>
   
@@ -22,18 +24,19 @@
   </div>
   
   <div id="Javascript" class="tabcontent active" style="display:block">
-    <h3>Javascript</h3>
-    <div markdown="1">
-      <pre>
-      ```
+    
+    
+      <pre class="prettyprint">
+        <code >
+     
         authenticate = () => {
-          let address = "https://oauth.nzpost.co.nz/as/token.oauth2";
-          let id = {client_id};
-          let secret = {client_secret};
-          let grant_type = "client_credentials";
+          let address = `https://oauth.nzpost.co.nz/as/token.oauth2
+                         ?grant_type=$client_credentials
+                         &client_id=${client_id}
+                         &client_secret=${client_secret}`;
           
           fetch(
-            `${address}?grant_type=${grant_type}&client_id=${id}&client_secret=${secret}`,
+            address,
             { method: "POST" }
           )
             .then(response => {
@@ -48,14 +51,15 @@
             .catch(error => console.log("Error", error));
           });
         }
-      ```
+     
+        </code>
       </pre>
-    </div>
+    
   </div>
   
   <div id="Python" class="tabcontent">
     <h3>Python</h3>
-    <p>Python</p>
+    <p id='content'>Python</p>
   </div>
   
   <div id="C#" class="tabcontent">
@@ -67,3 +71,4 @@
    
 </body>
 </html>
+
