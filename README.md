@@ -7,6 +7,10 @@ markdown_extensions:
 
 <h1>Test</h1>
 
+``` python fct_label="Python 2"
+print "Bonjour" 
+```
+
 
 ```javascript
   authenticate = () => {
