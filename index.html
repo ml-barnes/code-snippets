@@ -3,9 +3,10 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NZ Post API Code Snippets</title>
   <link rel="stylesheet" href="./style.css">
   <script src="./script.js"></script>
-  
+  <link rel="shortcut icon" type="image/x-icon" href="logo.webp" />
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </head>
 <body>
@@ -15,7 +16,7 @@
     <img src="logo.webp" height="50px" width="50px"/>
   </div>
   <div>
-  <h2 class="heading">NZ Post Code Snippets</h2>
+  <h2 class="heading">NZ Post APIs Code Snippets</h2>
   </div>
 </div>
 <div class="body">
@@ -34,28 +35,33 @@
       <pre class="prettyprint">
         <code >
      
-        authenticate = () => {
-          let address = `https://oauth.nzpost.co.nz/as/token.oauth2
-                         ?grant_type=$client_credentials
-                         &client_id=${client_id}
-                         &client_secret=${client_secret}`;
-          
-          fetch(
-            address,
-            { method: "POST" }
-          )
-            .then(response => {
-              if (response.status >= 200 && response.status <= 300) {
-                response.json().then(json => {
-                  // Do something with JSON
-                });
-              } else {
-                // Handle error
-              }
-            })
-            .catch(error => console.log("Error", error));
-          });
-        }
+          authenticate = (req, res) => {
+            let address = `https://oauth.nzpost.co.nz/as/token.oauth2
+                           ?grant_type=$client_credentials
+                           &client_id=${client_id}
+                           &client_secret=${client_secret}`;
+            
+            fetch(
+              address,
+              { method: "POST" }
+            )
+              .then(response => {
+                if (response.status === 200 ) {
+                  response.json().then(json => {
+                    // Return access token as response. (Make sure Bearer is added before token)
+                    res.status(200).send("Bearer " + json.access_token);
+                } else {
+                  // Response not OK, send back for error handling
+                  res.status(400).send(response);
+                }
+              })
+              .catch(error => {
+                // Error fetching data, send response for error handling
+                console.log("Error", error);
+                res.status(400).send(error);
+              });
+            });
+          }
      
         </code>
       </pre>
