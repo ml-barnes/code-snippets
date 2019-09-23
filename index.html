@@ -43,10 +43,7 @@
                            &client_id=${client_id}
                            &client_secret=${client_secret}`;
             
-            fetch(
-              address,
-              { method: "POST" }
-            )
+            fetch(address, { method: "POST" })
               .then(response => {
                 if (response.status === 200 ) {
                   response.json().then(json => {
