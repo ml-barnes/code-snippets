@@ -38,7 +38,7 @@
           // Simulating an Authentication GET request in Node server
      
           authenticate = (req, res) => {
-            let address = `https://oauth.nzpost.co.nz/as/token.oauth2
+            const address = `https://oauth.nzpost.co.nz/as/token.oauth2
                            ?grant_type=$client_credentials
                            &client_id=${client_id}
                            &client_secret=${client_secret}`;
