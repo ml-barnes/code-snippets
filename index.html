@@ -1,84 +1,78 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NZ Post API Code Snippets</title>
-  <link rel="stylesheet" href="./style.css">
-  <script src="./script.js"></script>
-  <link rel="shortcut icon" type="image/x-icon" href="logo.webp" />
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-<body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NZ Post API Code Snippets</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="logo.webp" />
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body>
   
-<div class="header" style="display:flex; justify-content: center">
-  <div style="align-self: center; position: absolute; left: 1%;">
-    <img src="logo.webp" height="50px" width="50px"/>
-  </div>
-  <div>
-  <h2 class="heading">NZ Post APIs Code Snippets</h2>
-  </div>
-</div>
-<div class="body">
+    <div class="header" style="display:flex; justify-content: center">
+      <div style="align-self: center; position: absolute; left: 1%;">
+        <img src="logo.webp" height="50px" width="50px"/>
+      </div>
+      <div>
+      <h2 class="heading">NZ Post APIs Code Snippets</h2>
+      </div>
+    </div>
+    <div class="body">
 
-  <h2>Authentication</h2>
-  
-  <div class="tab">
-    <button class="tablinks active" onclick="openCity(event, 'Javascript')">Javascript</button>
-    <button class="tablinks" onclick="openCity(event, 'Python')">Python</button>
-    <button class="tablinks" onclick="openCity(event, 'C#')">C#</button>
-  </div>
-  
-  <div id="Javascript" class="tabcontent active" style="display:block">
-    
-    
-      <pre class="prettyprint">
-        <code >
-        
-          // Simulating an Authentication GET request in Node server
-     
-          authenticate = (req, res) => {
-            const address = `https://oauth.nzpost.co.nz/as/token.oauth2
-                           ?grant_type=$client_credentials
-                           &client_id=${client_id}
-                           &client_secret=${client_secret}`;
-            
-            fetch(address, { method: "POST" })
-              .then(response => {
-                if (response.status === 200 ) {
-                  response.json().then(json => {
-                    // Return access token as response. (Make sure Bearer is added before token)
-                    res.status(200).send("Bearer " + json.access_token);
-                } else {
-                  // Response not OK, send back for error handling
-                  res.status(400).send(response);
-                }
-              })
-              .catch(error => {
-                // Error fetching data, send response for error handling
-                console.log("Error", error);
-                res.status(400).send(error);
-              });
-            });
-          }
-     
-        </code>
-      </pre>
-    
-  </div>
-  
-  <div id="Python" class="tabcontent">
-    <h3>Python</h3>
-    <p id='content'>Python</p>
-  </div>
-  
-  <div id="C#" class="tabcontent">
-    <h3>C#</h3>
-    <p>C#</p>
-  </div>
-</div>
+      <h2>Authentication</h2>
 
-   
-</body>
+      <div class="tab">
+        <button class="tablinks active" onclick="openCity(event, 'Javascript')">Javascript</button>
+        <button class="tablinks" onclick="openCity(event, 'Python')">Python</button>
+        <button class="tablinks" onclick="openCity(event, 'C#')">C#</button>
+      </div>
+
+      <div id="Javascript" class="tabcontent active" style="display:block">
+          <pre class="prettyprint">
+            <code >
+
+              // Simulating an Authentication GET request in Node server
+
+              authenticate = (req, res) => {
+                const address = `https://oauth.nzpost.co.nz/as/token.oauth2
+                               ?grant_type=$client_credentials
+                               &client_id=${client_id}
+                               &client_secret=${client_secret}`;
+
+                fetch(address, { method: "POST" })
+                  .then(response => {
+                    if (response.status === 200 ) {
+                      response.json().then(json => {
+                        // Return access token as response. (Make sure Bearer is added before token)
+                        res.status(200).send("Bearer " + json.access_token);
+                    } else {
+                      // Response not OK, send back for error handling
+                      res.status(400).send(response);
+                    }
+                  })
+                  .catch(error => {
+                    // Error fetching data, send response for error handling
+                    console.log("Error", error);
+                    res.status(400).send(error);
+                  });
+                });
+              }
+            </code>
+          </pre>
+      </div>
+
+      <div id="Python" class="tabcontent">
+        <h3>Python</h3>
+        <p id='content'>Python</p>
+      </div>
+
+      <div id="C#" class="tabcontent">
+        <h3>C#</h3>
+        <p>C#</p>
+      </div>
+    </div>   
+  </body>
 </html>
 
