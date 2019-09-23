@@ -49,7 +49,7 @@
                         res.status(200).send("Bearer " + json.access_token);
                     } else {
                       // Response not OK, send back for error handling
-                      res.status(400).send(response);
+                      res.status(response.status).send(response);
                     }
                   })
                   .catch(error => {
