@@ -45,8 +45,8 @@
                   .then(response => {
                     if (response.status === 200 ) {
                       response.json().then(json => {
-                        // Return access token as response. (Make sure Bearer is added before token)
-                        res.status(200).send("Bearer " + json.access_token);
+                        // Return access token as response. (Make sure Bearer is added before token)                        
+                        res.status(200).send({ access_token: "Bearer " + json.access_token });
                     } else {
                       // Response not OK, send back for error handling
                       res.status(response.status).send(response);
