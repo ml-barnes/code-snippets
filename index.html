@@ -64,8 +64,24 @@
       </div>
 
       <div id="Python" class="tabcontent">
-        <h3>Python</h3>
-        <p id='content'>Python</p>
+         <pre class="prettyprint">
+            <code >
+              import requests
+
+              params = {
+                  'grant_type': 'client_credentials', 
+                  'client_id': '{client_id}}', 
+                  'client_secret': '{client_secret}'
+              }
+    
+              try:
+                r = requests.post("https://oauth.nzpost.co.nz/as/token.oauth2", params=params)
+                r.raise_for_status()
+                access_token = "Bearer " + r.json()['access_token']
+              except requests.exceptions.HTTPError as err:
+                print(err)    
+         </code>
+        </pre>
       </div>
 
       <div id="C#" class="tabcontent">
