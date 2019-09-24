@@ -105,7 +105,7 @@
                    HttpResponseMessage response = await client.PostAsync(address, null);
                    response.EnsureSuccessStatusCode();		 
                    var json = await response.Content.ReadAsStringAsync();
-		   // JSON.net is a great framework for deseralizing JSON. 
+		   // JSON.net is a great framework for deserializing JSON. 
 		   // We only care about getting the token so it's the only field we reference.
                    var auth = JsonConvert.DeserializeAnonymousType(json, new { access_token = "" });
                    token = "Bearer " + auth.access_token;
