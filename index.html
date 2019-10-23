@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body>
-  
+
     <div class="header" style="display:flex; justify-content: center">
       <div style="align-self: center; position: absolute; left: 1%;">
         <img src="logo.webp" height="50px" width="50px"/>
@@ -33,7 +33,7 @@
           <pre class="prettyprint">
             <code >
 
-              // Simulating an Authentication GET request in Node server
+              // Simulating an Authentication GET request in Node server.
 
               authenticate = (req, res) => {
                 const address = `https://oauth.nzpost.co.nz/as/token.oauth2
@@ -45,7 +45,7 @@
                   .then(response => {
                     if (response.status === 200 ) {
                       response.json().then(json => {
-                        // Return access token as response. (Make sure Bearer is added before token)                        
+                        // Return access token as response. (Make sure Bearer is added before token)
                         res.status(200).send({ access_token: "Bearer " + json.access_token });
                     } else {
                       // Response not OK, send back for error handling
@@ -69,17 +69,17 @@
               import requests
 
               params = {
-                  'grant_type': 'client_credentials', 
-                  'client_id': '{client_id}', 
+                  'grant_type': 'client_credentials',
+                  'client_id': '{client_id}',
                   'client_secret': '{client_secret}'
               }
-    
+
               try:
                 r = requests.post("https://oauth.nzpost.co.nz/as/token.oauth2", params=params)
                 r.raise_for_status()
                 access_token = "Bearer " + r.json()['access_token']
               except requests.exceptions.HTTPError as err:
-                print(err)    
+                print(err)
          </code>
         </pre>
       </div>
@@ -90,36 +90,35 @@
             using System.Net.Http;
             using System.Threading.Tasks;
             using Newtonsoft.Json;
-	
+
             // HttpClient is intended to be instantiated once per application
             static readonly HttpClient client = new HttpClient();
 
             static async Task Authenticate()
             {
                 string token;
-                try	
+                try
                 {
                    string clientID = "client_id={client_id}";
-                   string clientSecret = "client_secret={client_secret}";		
+                   string clientSecret = "client_secret={client_secret}";
                    string address = "https://oauth.nzpost.co.nz/as/token.oauth2?grant_type=client_credentials&" + clientID + "&" + clientSecret;
                    HttpResponseMessage response = await client.PostAsync(address, null);
-                   response.EnsureSuccessStatusCode();		 
+                   response.EnsureSuccessStatusCode();
                    var json = await response.Content.ReadAsStringAsync();
-		   // JSON.net is a great framework for deserializing JSON. 
+		   // JSON.net is a great framework for deserializing JSON.
 		   // We only care about getting the token so it's the only field we reference.
                    var auth = JsonConvert.DeserializeAnonymousType(json, new { access_token = "" });
                    token = "Bearer " + auth.access_token;
-                }  
+                }
                 catch(HttpRequestException e)
                 {
-                   Console.WriteLine("\nException Caught!");	
+                   Console.WriteLine("\nException Caught!");
                    Console.WriteLine("Message :{0} ",e.Message);
-                } 
+                }
             }
           </code>
         </pre>
       </div>
-    </div>   
+    </div>
   </body>
 </html>
-
